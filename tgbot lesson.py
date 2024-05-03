@@ -8,7 +8,13 @@ players = database.load()
 
 def random_number(x):
     s = random.randint(1, x + 1)
-    return s
+    return 
+
+def get_player_id(id):
+    if id not in players:
+        players[id] = PlayerData()
+    return players[id]
+
 
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -40,10 +46,6 @@ def on_message(message):
         bot.send_message(message.chat.id, "sorry something went wrong with the bot (: 🥲")
 
 
-def player_id(id):
-    if id in players:
-        return players[id]
-    else:players[id] = PlayerData()
 
 
 bot.infinity_polling()
