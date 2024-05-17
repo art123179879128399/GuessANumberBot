@@ -5,11 +5,11 @@ def load():
         with open("database.json", "rt") as file:
             text = file.read()
             g_list = json.loads(text)
-            result = []
+            result = dict()
             for d in g_list:
-                player_data = PlayerData()
+                player_data = PlayerData.PlayerData()
                 player_data.from_dictionary(d)
-                result.append(player_data)
+                result[player_data.id] = player_data
             return result
     except:
         print("failed to read DataBase")
