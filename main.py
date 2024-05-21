@@ -27,6 +27,7 @@ def start(message):
     get_player(message.from_user.id).times = 0
     # bot.send_message(message.chat.id, "hey lets play a game: try to guess my number")
     get_player(message.from_user.id).start = True
+    get_player(message.from_user.id).max_num = 0
     username = message.from_user.username
     print(username)
 
@@ -39,14 +40,15 @@ def on_message(message):
             bot.send_message(message.chat.id, "type /start pls")
             return
         if cur_player.max_num == 0:
-            cur_player.max_num == int(message.text)
+            cur_player.max_num = int(message.text)
             cur_player.num = random_number(cur_player.max_num)
-            bot.send_message(message.chat.id, "I have cose the number try to guess it")
+            bot.send_message(message.chat.id, "I have chose the number try to guess it")
             return
 
         a = int(message.text) 
         if a ==cur_player.num:
             bot.send_message(message.chat.id, "Congratulations you won!!!!!!!!!!!!!!!!!!!!!!!🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉🎉")
+
             cur_player.wins += 1
             bot.send_message(message.chat.id, f"You tried {cur_player.times + 1} times")
             cur_player.times = 0
