@@ -23,9 +23,7 @@ def start(message):
 
 
     global players
-    # get_player(message.from_user.id).num = random_number(6)
     get_player(message.from_user.id).times = 0
-    # bot.send_message(message.chat.id, "hey lets play a game: try to guess my number")
     get_player(message.from_user.id).start = True
     get_player(message.from_user.id).max_num = 0
     username = message.from_user.username
@@ -62,8 +60,5 @@ def on_message(message):
     except Exception as e:
         print(e)
         bot.send_message(message.chat.id, "sorry something went wrong with the bot (: 🥲")
-
-
-
 
 bot.infinity_polling()

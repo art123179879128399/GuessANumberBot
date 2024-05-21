@@ -10,6 +10,7 @@ class PlayerData:
     def wins_percentage(self, wins, loses):
         percentage = (wins / (wins + loses)) * 100
         return percentage
+
     def to_dictionary(self):
         return {"id": self.id, "wins": self.wins, "loses": self.loses, "times": self.times}
     
