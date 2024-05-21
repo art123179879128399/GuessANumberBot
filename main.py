@@ -2,6 +2,7 @@ import telebot
 import random
 import database
 import PlayerData
+
 BOT_KEY = "6752811972:AAE3gcqOz_S2-Fj0frrNjLmX9BkLGDFAj38"
 bot = telebot.TeleBot(BOT_KEY)
 players = database.load()
@@ -16,13 +17,10 @@ def get_player(id):
         players[id].id = id 
     return players[id]
 
-
 @bot.message_handler(commands=["start"])
 def start(message):
-    bot.send_message(message.chat.id, "chose the maximum number")
-
-
     global players
+    bot.send_message(message.chat.id, "chose the maximum number")
     get_player(message.from_user.id).times = 0
     get_player(message.from_user.id).start = True
     get_player(message.from_user.id).max_num = 0
@@ -31,7 +29,6 @@ def start(message):
 
 @bot.message_handler(func=lambda message: True)
 def on_message(message):
-    
     try:
         cur_player = get_player(message.from_user.id)
         if cur_player.start == False:
