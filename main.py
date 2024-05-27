@@ -50,9 +50,14 @@ def on_message(message):
             cur_player.max_num = int(message.text)
             cur_player.num = random_number(cur_player.max_num)
             kb_num = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-            for i in range(0, cur_player.max_num + 1):
-                curr_button = telebot.types.KeyboardButton(str(i))
-                kb_num.add(curr_button)
+            batons = []
+            print(cur_player.num)
+            if cur_player.max_num <= 30:
+                for i in range(0, cur_player.max_num + 1):
+                    curr_button = telebot.types.KeyboardButton(str(i))
+                    # kb_num.add(curr_button,row_width=10)
+                    batons.append(str(i))  
+                kb_num.add(*batons, row_width=5)
             
             bot.send_message(message.chat.id, "I have chosen the number, try to guess it", reply_markup=kb_num)
             return
